@@ -1,0 +1,83 @@
+{{> menu id="stats"}}
+
+<section class="ui center aligned middle aligned segment">
+
+  <h2>Playlist App Statistics</h2>
+
+  <h3 class="ui header">
+    App Statistics
+  </h3>
+  <p>
+    The playlist app now contains:
+  </p>
+  {{#with stats}}
+  <div class="ui center aligned grid">
+
+    <div class="ui sixteen wide column">
+
+      <div class="ui centered three statistics">
+        <div class="ui statistic">
+          <div class="value">
+            <i class="microphone icon"></i>
+          </div>
+          <div class="label">
+            {{displayNumPlaylists}} playlists
+          </div>
+        </div>
+
+        <div class="ui red statistic">
+          <div class="value">
+            <i class="music icon"></i>
+          </div>
+          <div class="label">
+            {{displayNumSongs}} songs
+          </div>
+        </div>
+
+        <div class="ui blue statistic">
+          <div class="value">
+            <i class="balance scale icon"></i>
+          </div>
+          <div class="label">
+            Average songs per <br> playlist: {{displayAverage}}
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="ui sixteen wide column">
+      <div class="ui centered two statistics">
+
+        <div class="ui yellow statistic">
+          <div class="value">
+            <i class="star icon"></i>
+          </div>
+          <div class="label">
+            Highest Rated playlists: {{highest}} stars
+            <table>
+              {{#each displayFav}}
+              <tr>
+                <td>{{this}}</td>
+              </tr>
+              {{/each}}
+            </table>
+          </div>
+        </div>
+
+        <div class="ui green statistic">
+          <div class="value">
+            <i class="dot circle outline icon"></i>
+          </div>
+          <div class="label">
+            Average Rating: {{displayAvgRating}}
+          </div>
+        </div>
+		
+      </div>
+    </div>
+    
+  </div>
+
+  {{/with}}
+
+</section>

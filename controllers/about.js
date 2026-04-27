@@ -1,17 +1,22 @@
 'use strict';
-
 import logger from "../utils/logger.js";
+import empStore from "../models/emp-store.js";
+import accounts from './accounts.js';
 
-const about = {
-  createView(request, response) {
+createView(request, response); {
+    const loggedInUser = accounts.getCurrentUser(request);
     logger.info("About page loading!");
-    response.send('About the Playlist app');   
-  },
+    
+    if (loggedInUser) {
+      const viewData = {
+        title: 'About the Playlist App',
+        fullname: loggedInUser.firstName + ' ' + loggedInUser.lastName,
+        employees: empStore.getEmployees(),
+      };
+      response.render('about', viewData);
+    }
+    else response.redirect('/');    
 };
 
-<nav>
-  <a href="/dashboard">Dashboard</a>
-  <a href="/about">About</a>
-</nav>
 
 export default about;

@@ -12,3 +12,25 @@ body {
   margin: 2em;
   background-color: lightgrey;
 }
+
+table {
+  margin:auto
+}
+
+.editSubmit {
+  border:none;
+  background: none;
+}
+
+.hide{
+    display: none;
+}
+
+
+.name{
+  padding-top:22.5px;
+  padding-right:5px;
+  line-height:20px;
+  font-weight:bold;
+  text-transform:capitalize;
+}

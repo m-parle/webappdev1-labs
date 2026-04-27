@@ -15,9 +15,12 @@
   "license": "ISC",
   "type": "module",
   "dependencies": {
+    "body-parser": "^2.2.2",
+    "cookie-parser": "^1.4.7",
     "express": "^5.2.1",
     "express-handlebars": "^8.0.6",
     "lowdb": "^7.0.1",
+    "uuid": "^13.0.0",
     "winston": "^3.19.0"
   },
   "devDependencies": {

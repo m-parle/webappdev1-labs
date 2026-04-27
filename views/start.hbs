@@ -9,52 +9,61 @@
     <img src = "/wallpaper.jpg" class = "ui cenetered image">
 
     <div class="ui five statistics" style="margin-top: 1em;">
-
-        <div class="statistic">
-            <div class="value">
-                <i class="music icon"></i>
-            </div>
-            <div class="label">
-                App Title: <br>
-                {{info.appTitle}}
-            </div>
-        </div>
-
-            <div class="statistic">
+    
+  {{#with info}}
+     
+    <div class="statistic">
+      <div class="value">
+        <i class="music icon"></i> 
+      </div>
+      <div class="label">
+        App Title: <br>
+        {{appTitle}}
+      </div>
+    </div>
+    
+    <div class="statistic">
       <div class="value">
         <i class="code branch icon"></i> 
       </div>
       <div class="label">
         App Version: <br>
-        Version {{info.version}}
+        Version {{version}}
       </div>
-    </div>    
+    </div> 
+     
     <div class="statistic">
       <div class="value">
         <i class="map pin icon"></i> 
       </div>
       <div class="label">
         Made in: <br>
-        {{info.location}}
+        {{location}}
       </div>
-    </div>    
+    </div> 
+	
     <div class="statistic">
       <div class="value">
         <i class="user icon"></i> 
       </div>
       <div class="label">
         Created by: <br>
-        {{info.creators.0.name}}
+        {{creators.0.name}}
       </div>
-    </div> 
+    </div>
+	
     <div class="statistic">
       <div class="value">
         <i class="user plus icon"></i> 
       </div>
       <div class="label">
         With help from: <br>
-        {{info.creators.1.name}}
+        {{creators.1.name}}
       </div>
-    </div> 
     </div>
+	
+  {{/with}}
+  
+</div>
+
 </section>

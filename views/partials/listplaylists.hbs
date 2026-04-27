@@ -1,0 +1,95 @@
+<section class="ui left aligned middle aligned segment">
+  
+  <section class="dashboard-header">
+
+  <h2 class="title">Playlist App Dashboard</h2>
+
+        <form action="/searchCategory" method="GET" class="ui form">
+        
+      <div class="ui inline fields">
+        <div class="field">
+          <input type="text" name="searchTerm" placeholder="Search by title..." value="{{search}}">
+        </div>
+
+        <div class="field">
+          <label>Sort by:</label>
+          <select class="ui dropdown" name="sort" onchange="this.form.submit()">
+            <option value="title" {{#if titleSelected}}selected{{/if}}>Title</option>
+            <option value="rating" {{#if ratingSelected}}selected{{/if}}>Rating</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label>Order:</label>
+          <select class="ui dropdown" name="order" onchange="this.form.submit()">
+            <option value="asc" {{#if ascSelected}}selected{{/if}}>↑</option>
+            <option value="desc" {{#if descSelected}}selected{{/if}}>↓</option>
+          </select>
+        </div>
+      </div>
+
+    </form>
+
+
+</section>
+  
+  {{#unless search}}
+  {{#unless playlists}}
+    <h3 class="ui message">
+       Start adding your playlists!
+    </h3>
+  {{/unless}}
+  {{/unless}}
+
+
+  {{#each playlists}}
+    <section class="ui left aligned middle aligned segment">
+
+      <h3 class="ui header">
+        {{uppercase title}}
+      </h3>
+      
+    <p>
+        <i class="music icon"></i>
+        {{#if songs}}
+            Total songs:
+            {{songs.length}}
+
+        {{else}}
+            Empty playlist!
+        {{/if}}
+
+        {{#if date}}
+            <br>
+            <i class="calendar alternate outline icon"></i>
+            Created on 
+            <i>{{formatDate date}}</i>
+        {{/if}}
+    </p>
+
+        {{#if rating}}
+            <p>
+                <span 
+                    class="ui yellow disabled rating" 
+                    data-icon="star" 
+                    data-rating="{{rating}}" 
+                    data-max-rating="5">
+                </span>
+
+                <span style="color: grey; font-size: 90%; font-style: italic">
+                    {{highlightPopular rating}}
+                </span>
+            </p>
+        {{/if}}
+
+
+	  <a href="/playlist/{{id}}">
+	     <i class = "ui open folder outline black icon"
+         ></i></a>
+        <a href="/dashboard/deleteplaylist/{{id}}">
+            <i class="ui trash black icon"></i>
+        </a>
+    </section>
+  {{/each}}
+
+</section>

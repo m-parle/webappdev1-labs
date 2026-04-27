@@ -1,0 +1,30 @@
+<form class="ui stacked segment form" method="POST" action="/playlist/{{playlistId}}/updatesong/{{id}}" >
+  <tr class="hide" id="edit{{@index}}">
+    <td>
+      <span class="ui input">
+        <input type="text" name="title" autofocus required
+          title="Please include a valid Title" 
+		  placeholder="Title" value="{{title}}">
+      </span>
+    </td>
+    <td>
+      <span class="ui input">
+        <input type="text" name="artist" required 
+               title="Please include a valid Artist" 
+			   placeholder="Artist" value="{{artist}}">
+      </span>
+    </td>
+    <td class="center aligned">
+      <button type = "reset" class = "editSubmit" id="hideEdit{{@index}}"
+	          title="Exit without saving">
+        <i class="ui undo icon"></i>
+      </button>
+    </td>
+    <td class="center aligned">
+      <button type = "submit" class = "editSubmit" 
+	          title="Save changes">
+        <i class="ui save icon"></i>
+      </button>
+    </td>
+  </tr>
+</form>
