@@ -1,4 +1,4 @@
-<tr id="song">
+<tr id="song{{@index}}">
   <td>
     {{title}}
   </td>
@@ -7,13 +7,13 @@
   </td>
 
   <td class="center aligned">
-    <button title="Edit song" class = "editSubmit" id="showEdit">
+    <button title="Edit song" class="editSubmit" id="showEdit{{@index}}">
       <i class="ui pencil icon"></i>
     </button>
   </td>
+
   <td class="center aligned">
-    <a href="/playlist/{{playlistId}}/deletesong/{{id}}" 
-	   title="Delete song">
+    <a href="/playlist/{{playlistId}}/deletesong/{{id}}" title="Delete song">
       <i class="ui black trash icon"></i>
     </a>
   </td>

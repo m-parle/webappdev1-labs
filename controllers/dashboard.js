@@ -6,7 +6,7 @@ import { v4 as uuidv4 } from 'uuid';
 import accounts from './accounts.js';
 
 const dashboard = {
-    createView(request, response) {
+  createView(request, response) {
     logger.info("Dashboard page loading!");
 
     const loggedInUser = accounts.getCurrentUser(request);
@@ -30,7 +30,7 @@ const dashboard = {
           }
 
           if (sortField === "rating") {
-            return (a.rating - b.rating) * order;
+            return ((a.rating || 0) - (b.rating || 0)) * order;
           }
 
           return 0;
@@ -40,56 +40,42 @@ const dashboard = {
       const viewData = {
         title: "Playlist App Dashboard",
         fullname: loggedInUser.firstName + ' ' + loggedInUser.lastName,
-        playlists: sortField ? sorted : playlists,
+        playlists: sorted,
         search: searchTerm,
-        titleSelected: request.query.sort === "title",
-        ratingSelected: request.query.sort === "rating",
+        titleSelected: sortField === "title",
+        ratingSelected: sortField === "rating",
         ascSelected: request.query.order === "asc",
         descSelected: request.query.order === "desc",
       };
-      
-      logger.info('about to render' + viewData.playlists);
-      
+
       response.render('dashboard', viewData);
+    } else {
+      response.redirect('/');
     }
-    else response.redirect('/');
+  },
 
-  }
-};
+  addPlaylist(request, response) {
+    const loggedInUser = accounts.getCurrentUser(request);
 
-    const viewData = {
-      title: "Playlist App Dashboard",
-      playlists: sortField ? sorted : playlists,
-      search: searchTerm,
-      titleSelected: request.query.sort === "title",
-      ratingSelected: request.query.sort === "rating",
-      ascSelected: request.query.order === "asc",
-      descSelected: request.query.order === "desc",
-    };
-
-    logger.debug(viewData.playlists);
-
-    response.render("dashboard", viewData);
-
-  addPlaylist(request, response); {
-    const timestamp = new Date();
-    
     const newPlaylist = {
       id: uuidv4(),
+      userid: loggedInUser.id,
       title: request.body.title,
-	  date: timestamp,
-      songs: []
+      date: new Date(),
+      rating: 0,
+      songs: [],
     };
+
     playlistStore.addPlaylist(newPlaylist);
     response.redirect('/dashboard');
-}
+  },
 
-deletePlaylist(request, response); {
+  deletePlaylist(request, response) {
     const playlistId = request.params.id;
     logger.debug(`Deleting Playlist ${playlistId}`);
     playlistStore.removePlaylist(playlistId);
     response.redirect("/dashboard");
+  },
 };
-
 
 export default dashboard;
